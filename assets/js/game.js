@@ -15,10 +15,11 @@ var enemyHealth = 50;
 var enemyAttack = 12;
 
 var fight = function(enemyName) {
-//Alert  players they're starting
-    window.alert("Welcome to Robot Gladiators!");
 
+// do as long as robot is alive
     var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+    while(enemyHealth > 0) {
+
 
 //choose fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
@@ -63,6 +64,7 @@ var fight = function(enemyName) {
 } else {
     window.alert("You need to choose a valid option. Try again!");
 }
+    }
 };
 
 for(var i = 0; i < enemyNames.length; i++) {
