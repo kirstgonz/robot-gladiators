@@ -114,26 +114,22 @@ var playAgainConfirm = window.confirm("Would you like to play again?");
 //shop
 var shop = function() {
     var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL health, UPGRADE attack, or LEAVE? Enter one: 'REFILL', 'UPGRADE', or 'LEAVE'."
+        "Would you like to REFILL health, UPGRADE attack, or LEAVE? Please enter 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
     );
 
 //switches to pick options
+shopOptionPrompt = parseInt(shopOptionPrompt);
+
 switch (shopOptionPrompt) {
-    case "REFILL":
-    case "refill":
+    case 1:
         playerInfo.refillHealth();
         break;
-
-    case "UPGRADE":
-    case "upgrade":
+    case 2:
         playerInfo.upgradeAttack();
         break;
-
-    case "LEAVE":
-    case "leave":
+    case 3:
         window.alert("Leaving store.");
         break;
-
     default:
         window.alert("Not a valid option. Try again.");
         shop();
