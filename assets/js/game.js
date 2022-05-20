@@ -106,12 +106,23 @@ var startGame = function() {
 
 //ends entire game
 var endGame = function() {
-    if (playerInfo.health > 0) {
+     if (playerInfo.health > 0) {
         window.alert("Great job, you survived! You now have a score of " + playerInfo.money + ".");
     } else {
         window.alert("You've lost your robot in battle.");
     }
-
+    
+    var highScore = localStorage.getItem("highscore");
+    if (highScore === null) {
+        highScore = 0;
+    }
+    if (playerInfo.money > highScore) {
+        localStorage.setItem("highscore", playerInfo.money);
+        localStorage.setItem("name", playerInfo.name);
+        alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
+    } else {
+        alert(playerInfo.name + "didn't beat the high score of " + highScore + ". Maybe next time!");
+    }
 
 //replay
 var playAgainConfirm = window.confirm("Would you like to play again?");
