@@ -3,22 +3,29 @@ var randomNumber = function(min, max) {
     return value;
 };
 
+var fightOrSkip = function() {
+    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+    promptFight = promptFight.toLowerCase();
+    if (promptFight === '' || promptFight === null) {
+        window.alert("Provide a vaild answer. Try again!");
+        return fightOrSkip();
+    }
+    if (promptFight === 'skip') {
+        var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+        if (confirmSkip) {
+            window.alert(playerInfo.name + ' has decided to skip this fight. Goodbye!');
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
+            console.log("playerInfo.money", playerInfo.money);
+            shop ();
+            return true;
+        }
+    }
+}
+
 var fight = function(enemy) {
-
     while(playerInfo.health > 0 && enemy.health > 0) {
-
-// do as long as robot is alive
-        var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
-
-        if (promptFight === 'skip' || promptFight === 'SKIP') {
-            var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-            
-            if (confirmSkip) {
-                window.alert(playerInfo.name + ' has decided to skip this fight. Goodbye!');
-                playerInfo.money = playerInfo.money - 10;
-                console.log("playerInfo.money", playerInfo.money);
-                break;
-            }
+        if (fightOrSkip()) {
+            break;
         }
 
 //attack enemy
